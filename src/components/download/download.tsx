@@ -1,7 +1,7 @@
 import { Button } from '@/components';
 import type { ReactPortal } from 'react';
 import { createPortal } from 'react-dom';
-import useDownload from './useDonwload';
+import useDownload from './useDownload';
 
 const Download = (): ReactPortal => {
   const {
