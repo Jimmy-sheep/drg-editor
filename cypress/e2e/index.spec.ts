@@ -4,6 +4,6 @@ describe('Basic', () => {
     cy.visit('/');
 
     cy.title().should('eq', 'DRG Editor');
-    cy.findByText('/MrMarble/drg-editor').should('exist').and('be.visible');
+    cy.findByText('/Jimmy-sheep/drg-editor').should('exist').and('be.visible');
   });
 });

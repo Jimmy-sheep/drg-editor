@@ -5,7 +5,7 @@
 ![DRG Season](https://img.shields.io/badge/DRG%20Season-3-blue.svg?style=flat)
 ![Saves Edited](https://img.shields.io/badge/dynamic/json?label=Saves%20Edited&query=%24.value&url=https%3A%2F%2Fapi.countapi.xyz%2Fget%2Fmrmarble.dev%2F687428ff-75a5-4b0f-a760-6556b55dbb64)
 
-Online save editor for deep rock galactic game. [Try it out!](https://mrmarble.dev/drg-editor/)
+Online save editor for deep rock galactic game. [Try it out!](https://jimmy-sheep.github.io/drg-editor/)
 
 > ⚠️ ALWAYS BACKUP YOUR SAVE FILE!
 
@@ -19,7 +19,7 @@ Current features:
 - Edit perk points
 - Edit weapon overclocks
 
-Planned features (hopefully :wink:):
+Planned features (hopefully 😉):
 
 - cosmetic overclocks
 - Unlock cosmetics
