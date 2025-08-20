@@ -11,7 +11,7 @@ interface Properties {
   dwarf: DWARFS;
 }
 
-const MAX_PERK_POINTS = 268_435_455;
+const MAX_PERK_POINTS = 660;
 
 function Dwarf({ dwarf }: Properties): ReactElement {
   const {

@@ -1,11 +1,11 @@
-import { ITEMS, RESOURCES } from '@/constant';
+import { SEASONS } from '@/constant';
 import useChangesStore from '@/stores/changesStore';
 import useSaveStore from '@/stores/saveStore';
 import { useEffect, useState } from 'react';
-import { SEASONS } from '../useSeasons';
 
 const XP_PER_LEVEL = 5000;
-const XP_OFFSET = 32;
+const XP_OFFSET = 153;
+const SCRIP_OFFSET = 193;
 
 interface Properties {
   season: keyof typeof SEASONS;
@@ -35,9 +35,7 @@ function useSeason({ season }: Properties): ReturnType {
   const [xp, setXp] = useState(
     Math.floor(save.getInt32(seasonUid, XP_OFFSET) % XP_PER_LEVEL)
   );
-  const [scrip, setScrip] = useState(
-    save.getInt32(RESOURCES[ITEMS.SCRIP], 0, save.indexOfMulti(seasonUid))
-  );
+  const [scrip, setScrip] = useState(save.getInt32(seasonUid, SCRIP_OFFSET));
 
   const onLevelChange = (value: number): void => {
     setLevel(value);
@@ -56,12 +54,7 @@ function useSeason({ season }: Properties): ReturnType {
   const onScripChange = (value: number): void => {
     setScrip(value);
     increment();
-    save.setInt32(
-      RESOURCES[ITEMS.SCRIP],
-      0,
-      value,
-      save.indexOfMulti(seasonUid)
-    );
+    save.setInt32(seasonUid, SCRIP_OFFSET, value);
     setSave(save);
   };
 
@@ -69,9 +62,7 @@ function useSeason({ season }: Properties): ReturnType {
     setSeasonUid(SEASONS[season]);
     setLevel(Math.floor(save.getInt32(seasonUid, XP_OFFSET) / XP_PER_LEVEL));
     setXp(Math.floor(save.getInt32(seasonUid, XP_OFFSET) % XP_PER_LEVEL));
-    setScrip(
-      save.getInt32(RESOURCES[ITEMS.SCRIP], 0, save.indexOfMulti(seasonUid))
-    );
+    setScrip(save.getInt32(seasonUid, SCRIP_OFFSET));
   }, [save, season, seasonUid]);
 
   return {

@@ -6,9 +6,9 @@ import { useFilterStore } from '@/stores/filterStore';
 import useSaveStore from '@/stores/saveStore';
 import { useState } from 'react';
 import createForged from './_helpers/createForged';
+import createOwned from './_helpers/createOwned';
 import handleForge from './_helpers/handleForge';
-import handleLock from './_helpers/handleLock';
-import handleUnlock from './_helpers/handleUnlock';
+import handleOwn from './_helpers/handleOwn';
 
 const FORGED_NEEDLE: UUID = [
   0x46, 0x6f, 0x72, 0x67, 0x65, 0x64, 0x53, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x74,
@@ -45,6 +45,10 @@ function useOverclocks(): ReturnType {
   const { increment } = useChangesStore();
 
   const [owned, setOwned] = useState(() => {
+    if (!save.has('OwnedSchematics')) {
+      createOwned(save, setSave);
+    }
+
     const length = save.getInt32(OWNED_NEEDLE, COUNT_OFFSET);
     const overclocks = [];
     for (let index = 0; index < length; index++) {
@@ -56,7 +60,6 @@ function useOverclocks(): ReturnType {
   const [forged, setForged] = useState(() => {
     if (!save.has('ForgedSchematics')) {
       createForged(save, setSave);
-      return [];
     }
 
     const length = save.getInt32(FORGED_NEEDLE, COUNT_OFFSET);
@@ -70,27 +73,29 @@ function useOverclocks(): ReturnType {
   });
 
   const onLock = (id: string): void => {
+    if (!owned.includes(id) && !forged.includes(id)) return;
+    if (owned.includes(id)) handleOwn({ save, id, owned, setSave, setOwned });
     if (forged.includes(id))
       handleForge({ save, id, forged, setSave, setForged });
-    if (!owned.includes(id)) return;
 
-    handleLock({ save, id, owned, setSave, setOwned });
     increment();
   };
 
   const onUnlock = (id: string): void => {
+    if (owned.includes(id) && !forged.includes(id)) return;
+    if (!owned.includes(id)) handleOwn({ save, id, owned, setSave, setOwned });
     if (forged.includes(id))
       handleForge({ save, id, forged, setSave, setForged });
-    if (owned.includes(id)) return;
 
-    handleUnlock({ save, id, owned, setSave, setOwned });
     increment();
   };
 
   const onForge = (id: string): void => {
-    if (owned.includes(id)) handleLock({ save, id, owned, setSave, setOwned });
+    if (!owned.includes(id) && forged.includes(id)) return;
+    if (owned.includes(id)) handleOwn({ save, id, owned, setSave, setOwned });
+    if (!forged.includes(id))
+      handleForge({ save, id, forged, setSave, setForged });
 
-    handleForge({ save, id, forged, setSave, setForged });
     increment();
   };
 

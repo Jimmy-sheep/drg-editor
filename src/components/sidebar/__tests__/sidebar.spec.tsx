@@ -21,6 +21,6 @@ describe('Sidebar', () => {
 
     act(() => screen.getByText('Resources').click());
 
-    expect(onClick).toBeCalledWith('Resources');
+    expect(onClick).toHaveBeenCalledWith('Resources');
   });
 });
