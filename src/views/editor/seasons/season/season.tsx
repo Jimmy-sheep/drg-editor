@@ -1,7 +1,6 @@
 import { Input, Rank, Wip } from '@/components';
-import { ITEMS } from '@/constant';
+import { SEASONS } from '@/constant';
 import type { ReactElement } from 'react';
-import type { SEASONS } from '../useSeasons';
 import useSeason from './useSeason';
 
 const XP_PER_LEVEL = 5000;
@@ -35,8 +34,10 @@ function Season({ season }: Properties): ReactElement {
           onChange={onXpChange}
         />
         <Input
-          name={ITEMS.SCRIP}
-          icon={`assets/${ITEMS.SCRIP.toLowerCase()}.webp`}
+          name='Scrip'
+          icon={`assets/scrip-${(Object.keys(SEASONS).indexOf(season) + 1)
+            .toString()
+            .padStart(2, '0')}.webp`}
           initialValue={scrip}
           max={0x0f_ff_ff_ff}
           onChange={onScripChange}

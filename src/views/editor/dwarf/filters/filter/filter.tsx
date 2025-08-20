@@ -45,7 +45,7 @@ function FilterElement({
 
       <ul
         tabIndex={tabIndex}
-        className='flex-start drg-scrollbar drg-internal-scrollbar dropdown-content absolute right-0 mt-2 max-h-[300px] w-52 scroll-m-0 overflow-auto overflow-x-hidden rounded-md bg-slate-700 pb-2 text-xs shadow not-first:px-3'
+        className='flex-start drg-scrollbar drg-internal-scrollbar dropdown-content absolute right-0 mt-2 max-h-[300px] w-64 scroll-m-0 overflow-auto overflow-x-hidden rounded-md bg-slate-700 pb-2 text-xs shadow not-first:px-3'
       >
         <div className='sticky top-0 mb-2 flex select-none gap-2 border-b-2 bg-slate-700 py-2'>
           {label}
@@ -69,13 +69,12 @@ function FilterElement({
                 className='my-auto cursor-pointer'
               >
                 <span className='w-[30px] whitespace-normal'>
-                  {content[keySelector]?.split(/(?=[A-Z])/).join(' ')}
+                  {content[keySelector]}
                 </span>
               </label>
             </li>
           ) : undefined
         )}
-        ;
       </ul>
     </div>
   );

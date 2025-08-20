@@ -31,11 +31,7 @@ function handleForge({
       count: forged.length - 1
     });
 
-    const start =
-      save.indexOfMulti(FORGED_NEEDLE) +
-      FORGED_NEEDLE.length +
-      FORGED_OFFSET +
-      (forged.length - 1) * 16;
+    const start = save.indexOfMulti(id);
     save.unshift(16, start);
 
     setSave(save.shrink(16));

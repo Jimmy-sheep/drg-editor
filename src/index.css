@@ -45,7 +45,7 @@ body {
 }
 
 .drg-framer {
-  @apply drg-gradient border-t-2 border-b-2 border-drg-primary-500;
+  @apply drg-gradient border-b-2 border-t-2 border-drg-primary-500;
 }
 
 .drg-title {

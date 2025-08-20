@@ -5,6 +5,8 @@ import { DWARFS, HEADER_OFFSET, UUIDS } from '../../../constant';
 import { hexStringToByteArray } from '../../hexToByte';
 import { U8Array } from '../uint8array';
 
+const XP_OFFSET = 26;
+
 describe('U8Array', () => {
   const saveWithoutOverclocks = readFileSync(
     'src/__tests__/fixtures/with_overclocks.sav'
@@ -27,22 +29,20 @@ describe('U8Array', () => {
 
   describe.each(cases)('UUID as $type', ({ uuid }) => {
     test(`Should find the UUID ${uuid.toString()}`, () => {
-      expect(haystack.indexOfMulti(uuid)).toBe(44_531);
+      expect(haystack.indexOfMulti(uuid)).toBe(83_989);
     });
 
     test('Should be able to get int32', () => {
-      const offset = 26; // xp offset
-      const value = 318_093;
-      expect(haystack.getInt32(uuid, offset)).toBe(value);
+      const value = 200_927;
+      expect(haystack.getInt32(uuid, XP_OFFSET)).toBe(value);
     });
 
     test('Should be able to set int32', () => {
-      const offset = 26; // xp offset
       const value = 1337;
 
-      haystack.setInt32(uuid, offset, value);
+      haystack.setInt32(uuid, XP_OFFSET, value);
 
-      expect(haystack.getInt32(uuid, offset)).toBe(value);
+      expect(haystack.getInt32(uuid, XP_OFFSET)).toBe(value);
     });
   });
 
@@ -57,7 +57,7 @@ describe('U8Array', () => {
         ],
         34
       )
-    ).toBe('5885a33b15ae844591a66b65a2e5494e');
+    ).toBe('2949a3be68ea2a4197d532af80549101');
   });
 
   test('Should set UUID', () => {

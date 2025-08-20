@@ -10,7 +10,7 @@ jobs:
   update-screenshots:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: bash tools/update_screenshots.sh
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4

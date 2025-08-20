@@ -10,20 +10,20 @@ const TABS = [
   { name: 'Resources', icon: 'assets/resources.webp' },
   { name: 'Season', icon: 'assets/pb.webp' },
   {
-    name: DWARFS.DRILLER,
-    icon: 'assets/driller.webp'
-  },
-  {
-    name: DWARFS.GUNNER,
-    icon: 'assets/gunner.webp'
-  },
-  {
     name: DWARFS.SCOUT,
     icon: 'assets/scout.webp'
   },
   {
+    name: DWARFS.DRILLER,
+    icon: 'assets/driller.webp'
+  },
+  {
     name: DWARFS.ENGINEER,
     icon: 'assets/engineer.webp'
+  },
+  {
+    name: DWARFS.GUNNER,
+    icon: 'assets/gunner.webp'
   }
 ];
 

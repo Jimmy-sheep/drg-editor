@@ -14,8 +14,8 @@ function updateSize({
   count
 }: {
   save: U8Array;
-  add?: boolean;
   needle: UUID;
+  add?: boolean;
   count: number;
 }): void {
   let old = save.getInt32(b`SchematicSave`, SCHEMATIC_OFFSET);

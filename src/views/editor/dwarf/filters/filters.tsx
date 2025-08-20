@@ -6,7 +6,7 @@ import FilterElement from './filter/filter';
 
 function Filters({ dwarf }: { dwarf: DWARFS }): ReactElement {
   return (
-    <div className='absolute top-0 right-0 flex gap-2'>
+    <div className='absolute right-0 top-0 flex gap-2'>
       {Object.entries(FilterType).map(([, allowedCategory], index: number) => (
         <FilterElement
           key={allowedCategory}

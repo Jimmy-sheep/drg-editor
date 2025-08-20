@@ -24,7 +24,9 @@ describe.skipIf(!process.env.CI)('update snapshots', () => {
   let page: Page;
 
   beforeAll(async () => {
-    browser = await launch();
+    browser = await launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     page = await browser.newPage();
     await page.setViewport({ width: 1430, height: 1180 });
 
@@ -57,7 +59,11 @@ describe.skipIf(!process.env.CI)('update snapshots', () => {
 
   it('Update season snapshot', async () => {
     await page.click('li:nth-child(2)');
-    await page.click('.block:nth-child(1) button');
+    await page.focus('.block:nth-child(1) input');
+    await page.keyboard.press('Backspace');
+    await page.keyboard.press('Backspace');
+    await page.keyboard.type('57');
+    await page.keyboard.press('Tab');
 
     await page.waitForNetworkIdle({ idleTime: 1000 });
     await waitForTransition();
@@ -67,7 +73,7 @@ describe.skipIf(!process.env.CI)('update snapshots', () => {
   });
 
   it('Update dwarf snapshot', async () => {
-    await page.click('li:nth-child(3)');
+    await page.click('li:nth-child(4)');
 
     await page.waitForNetworkIdle({ idleTime: 1000 });
     await waitForTransition();

@@ -2,17 +2,17 @@
 import type { UUID } from '../helpers/u8array/uint8array';
 
 export const enum DWARFS {
-  DRILLER = 'driller',
-  GUNNER = 'gunner',
   SCOUT = 'scout',
-  ENGINEER = 'engineer'
+  DRILLER = 'driller',
+  ENGINEER = 'engineer',
+  GUNNER = 'gunner'
 }
 
 export const UUIDS: Record<DWARFS, UUID> = {
-  [DWARFS.DRILLER]: '9edd56f1eebcc5488d5b5e5b80b62db4',
-  [DWARFS.GUNNER]: 'ae56e180fec0c44d96fa29c28366b97b',
   [DWARFS.SCOUT]: '30d8ea17d8fbba4c95306de9655c2f8c',
-  [DWARFS.ENGINEER]: '85ef626c65f1024a8dfeb5d0f3909d2e'
+  [DWARFS.DRILLER]: '9edd56f1eebcc5488d5b5e5b80b62db4',
+  [DWARFS.ENGINEER]: '85ef626c65f1024a8dfeb5d0f3909d2e',
+  [DWARFS.GUNNER]: 'ae56e180fec0c44d96fa29c28366b97b'
 };
 
 export const PROMO_RANKS: string[] = [
